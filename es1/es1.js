@@ -1,15 +1,18 @@
-let fetch = require('node-fetch'); //require è uguale a import 
-let key = document.getElementById('key');
-let value = document.getElementById('value');
-let button = document.getElementById('salva');
-button.onclick = () => {
-if(key != " " && value != " "){
-    salva(key,value);
-    alert("Great jobe");
-}else{
-    alert("You must fill in all the fields first");
-}
-}
+//let fetch = require('node-fetch'); //require è uguale a import 
+const readline = require("readline").createInterface({
+    input: process.stdin,
+    output: process.stdout
+    });
+    readline.question('Inseriri una chiave ' , key => {
+    console.log(`Hey there ${key}!`);
+    readline.close();
+
+    });
+    readline.question('Inseriri un valore ' , value => {
+        console.log(`Hey there ${value}!`);
+        readline.close();
+        });
+
 const salva = (key,value) => {
     fetch("https://ws.progettimolinari.it/cache/set", {
     headers: {
@@ -25,6 +28,5 @@ const salva = (key,value) => {
   }).then((r) => {
       resolve(r.json())
     })
-
     .catch((error) => { reject(error) });
 }
