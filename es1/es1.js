@@ -1,18 +1,19 @@
-//let fetch = require('node-fetch'); //require è uguale a import 
+import fetch from 'node-fetch'; 
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
+
 const readline = require("readline").createInterface({
     input: process.stdin,
     output: process.stdout
     });
     readline.question('Inseriri una chiave ' , key => {
-    console.log(`Hey there ${key}!`);
-    readline.close();
-
-    });
     readline.question('Inseriri un valore ' , value => {
-        console.log(`Hey there ${value}!`);
-        readline.close();
-        });
-
+      salva(key, value);
+      readline.close();
+      });
+    });
+    
 const salva = (key,value) => {
     fetch("https://ws.progettimolinari.it/cache/set", {
     headers: {
@@ -25,8 +26,9 @@ const salva = (key,value) => {
         key: key,
         value: value
       })
-  }).then((r) => {
-      resolve(r.json())
-    })
-    .catch((error) => { reject(error) });
+  }).then(r => r.json())
+  .then(response => {
+    console.log(response);
+  })
+    .catch((error) => { console.log(error) });
 }

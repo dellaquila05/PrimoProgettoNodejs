@@ -1,15 +1,16 @@
 {
   "dependencies": {
-    "node-fetch": "^2.7.0"
+    "node-fetch": "^3.3.2"
   },
-  "name": "es1",
+  "name": "es2",
   "version": "1.0.0",
-  "main": "es1.js",
+  "main": "es2.js",
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "description": "",
-    "type":"module"
+  "type":"module"
 }
